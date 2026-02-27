@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Puppy Drawings</title>
+
+    <style>
+        body {
+            background-color: lightblue;
+            text-align: center;
+            font-family: Arial;
+        }
+
+        :root {
+            --dog-color: brown;   /* CHANGE COLOR NAME HERE */
+        }
+
+        .row {
+            margin-top: 50px;
+        }
+
+        .puppy {
+            display: inline-block;
+            margin: 30px;
+            position: relative;
+        }
+
+        .face {
+            width: 120px;
+            height: 120px;
+            background-color: var(--dog-color);
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .ear {
+            width: 35px;
+            height: 55px;
+            background-color: var(--dog-color);
+            position: absolute;
+            top: -15px;
+            border-radius: 50%;
+        }
+
+        .ear.left { left: -15px; }
+        .ear.right { right: -15px; }
+
+        .eye {
+            width: 10px;
+            height: 10px;
+            background-color: black;
+            border-radius: 50%;
+            position: absolute;
+            top: 45px;
+        }
+
+        .eye.left { left: 35px; }
+        .eye.right { right: 35px; }
+
+        .nose {
+            width: 12px;
+            height: 10px;
+            background-color: black;
+            position: absolute;
+            top: 70px;
+            left: 54px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Our Cute Puppies 🐶</h1>
+    <h3>CSS Drawing</h3>
+
+    <div class="row">
+
+        <div class="puppy">
+            <div class="ear left"></div>
+            <div class="ear right"></div>
+            <div class="face">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="nose"></div>
+            </div>
+        </div>
+
+        <div class="puppy">
+            <div class="ear left"></div>
+            <div class="ear right"></div>
+            <div class="face">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="nose"></div>
+            </div>
+        </div>
+
+        <div class="puppy">
+            <div class="ear left"></div>
+            <div class="ear right"></div>
+            <div class="face">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="nose"></div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
