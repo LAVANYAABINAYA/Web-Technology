@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Window and String Operations</title>
+<style>
+body{
+    text-align:center;
+    font-family:Arial;
+    margin-top:50px;
+}
+button{
+    padding:10px 20px;
+    margin:10px;
+}
+#output{
+    margin-top:20px;
+    font-size:20px;
+    color:blue;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Choose an Option</h2>
+
+<button onclick="openWin()">1. Open Window</button>
+<button onclick="closeWin()">2. Close Window</button>
+<button onclick="stringOp()">3. String Operation</button>
+
+<div id="output"></div>
+
+<script>
+
+var newWindow;   // global variable to store window reference
+
+function openWin(){
+    newWindow = window.open("", "", "width=300,height=200");
+    newWindow.document.write("<h3>This is a New Window 🚀</h3>");
+}
+
+function closeWin(){
+    if(newWindow){
+        newWindow.close();
+    }
+}
+
+function stringOp(){
+    var text = prompt("Enter a string:");
+
+    if(text != null){
+        var upper = text.toUpperCase();
+        var length = text.length;
+        var reversed = text.split("").reverse().join("");
+
+        document.getElementById("output").innerHTML =
+        "Uppercase: " + upper + "<br>" +
+        "Length: " + length + "<br>" +
+        "Reversed: " + reversed;
+    }
+}
+
+</script>
+
+</body>
+</html>
