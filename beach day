@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Beach Day Night</title>
+<style>
+html,body{
+    margin:0;
+    height:100%;
+}
+#scene{
+    width:100%;
+    height:100%;
+    background:skyblue;
+    position:relative;
+    overflow:hidden;
+    transition:2s;
+}
+#sun{
+    width:80px;
+    height:80px;
+    background:yellow;
+    border-radius:50%;
+    position:absolute;
+    top:60px;
+    left:10%;
+    transition:3s;
+}
+#wave{
+    width:200%;
+    height:120px;
+    background:deepskyblue;
+    position:absolute;
+    bottom:0;
+    animation:waveMove 4s infinite linear;
+}
+@keyframes waveMove{
+    0%{ left:0; }
+    100%{ left:-50%; }
+}
+#boat{
+    font-size:50px;
+    position:absolute;
+    bottom:120px;
+    left:20%;
+    transition:2s;
+}
+.star{
+    position:absolute;
+    color:white;
+    font-size:20px;
+    display:none;
+}
+button{
+    position:absolute;
+    top:10px;
+    left:10px;
+    padding:10px;
+    z-index:100;
+}
+</style>
+</head>
+
+<body>
+
+<div id="scene">
+    <div id="sun"></div>
+    <div id="boat">⛵</div>
+    <div id="wave"></div>
+
+    <!-- Stars -->
+    <div class="star" id="s1" style="top:10%;left:20%;">⭐</div>
+    <div class="star" id="s2" style="top:15%;left:50%;">⭐</div>
+    <div class="star" id="s3" style="top:8%;left:75%;">⭐</div>
+</div>
+
+<button onclick="toggle()">TOGGLE</button>
+
+<audio id="sound">
+<source src="https://www.soundjay.com/buttons/sounds/button-3.mp3">
+</audio>
+
+<script>
+
+var isDay = true;
+var sun = document.getElementById("sun");
+var scene = document.getElementById("scene");
+var boat = document.getElementById("boat");
+var stars = document.getElementsByClassName("star");
+var sound = document.getElementById("sound");
+
+function toggle(){
+    sound.play();
+
+    if(isDay){
+        // To Night
+        scene.style.background = "#001d3d";
+        sun.style.background = "white";
+        sun.style.top = "80%";
+
+        for(var i=0;i<stars.length;i++){
+            stars[i].style.display = "block";
+        }
+    }
+    else{
+        // To Day
+        scene.style.background = "skyblue";
+        sun.style.background = "yellow";
+        sun.style.top = "60px";
+
+        for(var i=0;i<stars.length;i++){
+            stars[i].style.display = "none";
+        }
+    }
+
+    isDay = !isDay;
+}
+
+// Boat Movement
+setInterval(function(){
+    var pos = Math.random()*80;
+    boat.style.left = pos + "%";
+},2000);
+
+</script>
+
+</body>
+</html>
