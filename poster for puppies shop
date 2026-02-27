@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Puppy World Poster</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: linen;
+}
+
+/* Poster container */
+.poster {
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: white;
+    padding: 40px;
+    border: 5px dotted brown;
+    border-radius: 20px;
+}
+
+/* BIG DOG PAW AT TOP */
+.paw-top {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.paw-top img {
+    width: 140px;
+
+}
+
+/* Headings */
+h1 {
+    text-align: center;
+    font-size: 60px;
+    color: brown;
+    margin-bottom: 10px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+h3 {
+    color: saddlebrown;
+    margin-top: 30px;
+}
+
+/* TILTED STICKY NOTE (RIGHT SIDE) */
+.sticky-note {
+    background-color: wheat;
+    padding: 25px;
+    width: 300px;
+    float: right;
+    margin-left: 25px;
+    border-left: 6px solid brown;
+    font-style: italic;
+    transform: rotate(-6deg); /* tilt */
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.3);
+}
+
+/* ICON LIST WITH DOG PAW (IMAGE) */
+.icon-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.icon-list li {
+    margin-bottom: 12px;
+}
+
+.icon-list li::before {
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background-image: url("https://cdn-icons-png.flaticon.com/512/194/194279.png"); /* DOG PAW */
+    background-size: cover;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* Other lists */
+ul.square {
+    list-style-type: square;
+}
+
+ol {
+    margin-left: 20px;
+}
+
+/* Table */
+table {
+    width: 75%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid brown;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: wheat;
+}
+                                                                                                                                                                                                                                                
+/* Link */
+.page-link {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.page-link a {
+    text-decoration: none;
+    font-weight: bold;
+    color: brown;
+}
+
+.page-link a:hover {
+    text-decoration: underline;
+}
+.s1{
+    font-size:50px;
+
+    }
+</style>
+</head>
+
+<body>
+
+<div class="poster">
+
+    <!-- BIG DOG PAW -->
+    <div class="paw-top">
+        <img src="https://cdn-icons-png.flaticon.com/512/194/194279.png" alt="Dog Paw Print">
+    </div>
+
+    <h1>Puppy World</h1>
+    <h2>Where Love Begins with a Wag</h2>
+
+    <div class="sticky-note">
+
+        <span class="s1">P</span>uppies bring happiness, loyalty, and unconditional love into every home.
+    </div>
+
+    <h3>Why Choose Our Puppies?</h3>
+    <ul class="icon-list">
+        <li>Healthy and vaccinated puppies</li>
+        <li>Friendly and playful nature</li>
+        <li>Raised with proper care</li>
+    </ul>
+
+    <h3>Available Breeds</h3>
+    <ul class="square">
+        <li>Labrador Retriever</li>
+        <li>Golden Retriever</li>
+        <li>German Shepherd</li>
+    </ul>
+
+    <h3>Adoption Process</h3>
+    <ol>
+        <li>Select your puppy</li>
+        <li>Complete basic verification</li>
+        <li>Take your puppy home</li>
+    </ol>
+
+    <h3>Price Details</h3>
+    <table>
+        <tr>
+            <th>Breed</th>
+            <th>Age</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>Labrador</td>
+            <td>2 Months</td>
+            <td>Rs. 12,000</td>
+        </tr>
+        <tr>
+            <td>Golden Retriever</td>
+            <td>3 Months</td>
+            <td>Rs. 15,000</td>
+        </tr>
+    </table>
+
+    <div class="page-link">
+        <a href="drawing.html">View Puppy Drawing</a>
+    </div>
+
+</div>
+
+</body>
+</html>
