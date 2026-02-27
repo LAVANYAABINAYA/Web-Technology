@@ -1,0 +1,168 @@
+const fs = require("fs");
+const readline = require("readline");
+
+// Load recipes
+let rec = [];
+try {
+    rec = JSON.parse(fs.readFileSync("recipes.json", "utf8"));
+} catch (err) {
+    rec = [];
+}
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+// Save to JSON file
+function saveRec() {
+    fs.writeFileSync("recipes.json", JSON.stringify(rec, null, 2));
+}
+
+//  Add Recipe
+function addRec() {
+    rl.question("Recipe ID: ", id => {
+        if (rec.some(r => r.recipeId === id)) {
+            console.log("Recipe ID already exists");
+            return menu();
+        }
+
+        rl.question("Name: ", nm => {
+            rl.question("Category: ", cat => {
+                rl.question("Price: ", pr => {
+                    rl.question("Preparation Time (min): ", pt => {
+                        rl.question("Chef Name: ", chefNm => {
+                            rl.question("Ingredients (comma separated): ", ing => {
+
+                                const ingArr = ing.split(",").map(i => ({ item: i.trim() }));
+
+                                const obj = {
+                                    recipeId: id,
+                                    name: nm,
+                                    category: cat,
+                                    price: Number(pr),
+                                    preparationTime: Number(pt),
+                                    available: true,
+                                    addedDate: new Date().toISOString().split("T")[0],
+                                    ingredients: ingArr,
+                                    chef: {
+                                        name: chefNm,
+                                        experienceYears: 5,
+                                        specializations: ["Indian", "Continental"]
+                                    },
+                                    tags: ["popular", "chefSpecial"]
+                                };
+
+                                rec.push(obj);
+                                saveRec();
+                                console.log("Recipe added!");
+                                menu();
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+}
+
+// Delete Recipe
+function delRec() {
+    rl.question("Enter Recipe ID to delete: ", id => {
+        const len = rec.length;
+        rec = rec.filter(r => r.recipeId !== id);
+
+        if (rec.length === len) console.log("Recipe not found");
+        else {
+            saveRec();
+            console.log("Recipe deleted");
+        }
+        menu();
+    });
+}
+
+// Update Recipe
+function updRec() {
+    rl.question("Enter Recipe ID to update: ", id => {
+        const rcp = rec.find(r => r.recipeId === id);
+
+        if (!rcp) {
+            console.log(" Recipe not found");
+            return menu();
+        }
+
+        rl.question(`New Price (current ${rcp.price}): `, pr => {
+            if (pr) rcp.price = Number(pr);
+
+            rl.question(`Available? (true/false, current ${rcp.available}): `, av => {
+                if (av) rcp.available = av.toLowerCase() === "true";
+
+                saveRec();
+                console.log("Recipe updated");
+                menu();
+            });
+        });
+    });
+}
+
+// Search Recipe
+function searchRec() {
+    rl.question("Search by (name/category/tag): ", type => {
+        rl.question("Enter value: ", val => {
+
+            let res = [];
+
+            if (type.toLowerCase() === "name") {
+                res = rec.filter(r => r.name.toLowerCase().includes(val.toLowerCase()));
+            }
+            else if (type.toLowerCase() === "category") {
+                res = rec.filter(r => r.category.toLowerCase() === val.toLowerCase());
+            }
+            else if (type.toLowerCase() === "tag") {
+                res = rec.filter(r => r.tags.includes(val));
+            }
+            else {
+                console.log("Invalid search type");
+                return menu();
+            }
+
+            console.log("\nSearch Results:");
+            console.table(res);
+            menu();
+        });
+    });
+}
+
+// Display All Recipes
+function showRec() {
+    console.log("\nAll Recipes:");
+    console.table(rec);
+    menu();
+}
+
+// CLI Menu
+function menu() {
+    console.log("\n--- Recipe Manager ---");
+    console.log("1. Add Recipe");
+    console.log("2. Delete Recipe");
+    console.log("3. Update Recipe");
+    console.log("4. Search Recipe");
+    console.log("5. Display All Recipes");
+    console.log("6. Exit");
+
+    rl.question("Choose option: ", op => {
+        switch (op) {
+            case "1": addRec(); break;
+            case "2": delRec(); break;
+            case "3": updRec(); break;
+            case "4": searchRec(); break;
+            case "5": showRec(); break;
+            case "6": rl.close(); break;
+            default:
+                console.log("Invalid option");
+                menu();
+        }
+    });
+}
+
+menu();
